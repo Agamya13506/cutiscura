@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= typeof title !== 'undefined' ? title + ' · Cutiscura' : 'Cutiscura' %></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/LiquidChrome.css" />
+    <link rel="stylesheet" href="/css/StaggeredMenu.css" />
+  </head>
+  <body>
+    <div id="liquid-backdrop" class="liquid-backdrop"></div>
+    <div class="background-glow background-glow--one"></div>
+    <div class="background-glow background-glow--two"></div>
+
+    <div id="staggered-menu-root" data-user-logged-in="<%= typeof currentUser !== 'undefined' && currentUser ? 'true' : 'false' %>" data-user-name="<%= typeof currentUser !== 'undefined' && currentUser ? currentUser.name : '' %>"></div>
+
+    <main class="container">
+      <%- body %>
+    </main>
+
+    <footer class="site-footer">
+      <p>© <%= new Date().getFullYear() %> Cutiscura</p>
+    </footer>
+    <script defer src="/js/liquidChrome.bundle.js"></script>
+  </body>
+</html>
+

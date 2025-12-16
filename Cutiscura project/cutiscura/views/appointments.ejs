@@ -1,0 +1,72 @@
+<section class="page-header">
+  <div>
+    <h1>Dermatologist Appointments</h1>
+    <p>Review upcoming visits and prepare for booking flow.</p>
+  </div>
+</section>
+
+<% if (message) { %>
+  <div class="alert"><%= message %></div>
+<% } %>
+
+<div class="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th>User</th>
+        <th>Dermatologist</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if (!appointments.length) { %>
+        <tr>
+          <td colspan="5">No appointments scheduled.</td>
+        </tr>
+      <% } %>
+      <% appointments.forEach((appt) => { %>
+        <tr>
+          <td><%= appt.user_name %></td>
+          <td><%= appt.derm_name %></td>
+          <td><%= appt.date.toISOString().split('T')[0] %></td>
+          <td><%= appt.time %></td>
+          <td><%= appt.notes || '—' %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+
+<section class="form-card">
+  <h2>Booking (Coming Soon)</h2>
+  <p>This area is a placeholder for a booking form. Connect it to POST routes when ready.</p>
+  <div class="form-grid">
+    <label>
+      User
+      <select disabled>
+        <% users.forEach((user) => { %>
+          <option><%= user.name %></option>
+        <% }) %>
+      </select>
+    </label>
+    <label>
+      Dermatologist
+      <select disabled>
+        <% derms.forEach((derm) => { %>
+          <option><%= derm.name %></option>
+        <% }) %>
+      </select>
+    </label>
+    <label>
+      Date
+      <input type="date" disabled />
+    </label>
+    <label>
+      Time
+      <input type="time" disabled />
+    </label>
+  </div>
+</section>
+

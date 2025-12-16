@@ -1,0 +1,72 @@
+<section class="page-header">
+  <div>
+    <p class="eyebrow">Interactive lab</p>
+    <h1>Skin analysis quiz</h1>
+    <p>Answer quickly, and we’ll map scores to active ingredients tailored for you.</p>
+  </div>
+  <div class="quiz-meta">
+    <div>
+      <span>Questions</span>
+      <strong><%= questions.length %></strong>
+    </div>
+    <div>
+      <span>Recommendation slots</span>
+      <strong>4</strong>
+    </div>
+    <div class="progress">
+      <span>Completion</span>
+      <div class="progress-bar"><span></span></div>
+    </div>
+  </div>
+</section>
+
+<% if (message) { %>
+  <div class="alert"><%= message %></div>
+<% } %>
+
+<% if (questions.length === 0) { %>
+  <p>Quiz is unavailable.</p>
+<% } else { %>
+  <form action="/quiz/submit" method="POST" class="quiz-form">
+    <% questions.forEach((question) => { %>
+      <div class="quiz-question">
+        <h3><%= question.question_text %></h3>
+        <% question.options.forEach((option) => { %>
+          <label class="quiz-option">
+            <input
+              type="radio"
+              name="question-<%= question.question_id %>"
+              value="<%= option.option_id %>"
+              required
+            />
+            <span><%= option.option_text %></span>
+          </label>
+        <% }) %>
+      </div>
+    <% }) %>
+
+    <button type="submit">Generate insights</button>
+  </form>
+<% } %>
+
+<% if (score !== null) { %>
+  <section class="quiz-results">
+    <h2>Your Score: <%= score %></h2>
+    <% if (recommendations && recommendations.length) { %>
+      <ul class="recommendation-list">
+        <% recommendations.forEach((item) => { %>
+          <li class="recommendation-card">
+            <div>
+              <p class="eyebrow">Recommended</p>
+              <strong><%= item.name %></strong>
+            </div>
+            <span>₹<%= Number(item.price).toFixed(2) %></span>
+          </li>
+        <% }) %>
+      </ul>
+    <% } else { %>
+      <p>No recommendations available for this score.</p>
+    <% } %>
+  </section>
+<% } %>
+

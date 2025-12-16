@@ -1,0 +1,117 @@
+<section class="floating-tabs">
+  <a href="#home" class="tab-link active">Home</a>
+  <a href="#products-panel" class="tab-link">Products</a>
+  <a href="#dermatologist-panel" class="tab-link">Dermatologists</a>
+  <a href="#quiz-panel" class="tab-link">Quiz</a>
+  <a href="#routines-panel" class="tab-link">Routines</a>
+  <a href="#insight-panel" class="tab-link">Insight</a>
+  <button class="btn btn-ghost tab-home" onclick="window.location.href='/'">Back to main home</button>
+</section>
+
+<section id="home" class="hero hero--cinematic">
+  <div id="liquid-chrome-root" class="hero-liquid"></div>
+  <div class="hero-content">
+    <div class="hero-chip">Skincare Intelligence</div>
+    <h1>Welcome to Cutiscura</h1>
+    <p class="hero-subtext">Your command centre for routines, dermatologists, and skin goals.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="/quiz">Start skin quiz</a>
+      <a class="btn btn-ghost" href="/products">Browse catalog</a>
+    </div>
+    <div class="hero-quote">“Consistent care creates luminous skin. Let data guide every ritual.”</div>
+  </div>
+</section>
+
+<% if (error) { %>
+  <div class="alert alert-error"><%= error %></div>
+<% } %>
+
+<section class="stats-grid">
+  <div class="card">
+    <div class="card-icon sparkle"></div>
+    <p class="label">Products</p>
+    <p class="value"><%= stats.products %></p>
+    <p class="card-foot">Curated formulas</p>
+  </div>
+  <div class="card">
+    <div class="card-icon pulse"></div>
+    <p class="label">Users</p>
+    <p class="value"><%= stats.users %></p>
+    <p class="card-foot">Skin profiles</p>
+  </div>
+  <div class="card">
+    <div class="card-icon orbit"></div>
+    <p class="label">Routines</p>
+    <p class="value"><%= stats.routines %></p>
+    <p class="card-foot">Personalised flows</p>
+  </div>
+</section>
+
+<section id="products-panel" class="dashboard-section">
+  <div class="section-head">
+    <div>
+      <p class="eyebrow">Lab inventory</p>
+      <h2>Formulas engineered for precise concerns</h2>
+    </div>
+    <a class="btn btn-primary" href="/products">View catalog</a>
+  </div>
+  <p>Explore cleansers, serums, moisturisers, and SPF tuned to each routine step.</p>
+</section>
+
+<section id="dermatologist-panel" class="dashboard-section">
+  <div class="section-head">
+    <div>
+      <p class="eyebrow">Expert network</p>
+      <h2>Book dermatologists who understand your data</h2>
+    </div>
+    <a class="btn btn-primary" href="/appointments">Manage visits</a>
+  </div>
+  <ul class="pill-list">
+    <li>Acne interventions</li>
+    <li>Pigmentation therapy</li>
+    <li>Barrier healing</li>
+    <li>Photo-ageing reversal</li>
+  </ul>
+</section>
+
+<section id="quiz-panel" class="dashboard-section">
+  <div class="section-head">
+    <div>
+      <p class="eyebrow">Live diagnostics</p>
+      <h2>Answer intuitive prompts, receive guided protocols</h2>
+    </div>
+    <a class="btn btn-primary" href="/quiz">Take the quiz</a>
+  </div>
+  <p>Scoring engine blends concern intensity, skin behavior, and desired finish to suggest ingredients.</p>
+</section>
+
+<section id="routines-panel" class="dashboard-section routines-panel">
+  <div class="section-head">
+    <div>
+      <p class="eyebrow">Real routines</p>
+      <h2>See how Cutiscura users stack their rituals</h2>
+    </div>
+  </div>
+  <div class="routine-grid">
+    <% if (routines && routines.length) { %>
+      <% routines.forEach((routine) => { %>
+        <div class="routine-card">
+          <p class="routine-user"><%= routine.user_name %></p>
+          <h3><%= routine.routine_name %></h3>
+          <p class="routine-time"><%= routine.time_of_day %> ritual</p>
+          <p class="routine-products"><%= routine.products %></p>
+        </div>
+      <% }) %>
+    <% } else { %>
+      <p>No routines found in the database.</p>
+    <% } %>
+  </div>
+</section>
+
+<section id="insight-panel" class="insight-panel">
+  <p class="eyebrow">Daily mantra</p>
+  <blockquote>
+    “Science, care, and consistency—Cutiscura keeps your skin narrative glowing.”
+  </blockquote>
+</section>
+

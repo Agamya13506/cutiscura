@@ -1,0 +1,33 @@
+<section class="auth-hero">
+  <div class="auth-card">
+    <div class="auth-card__head">
+      <p class="eyebrow">Welcome back</p>
+      <h1>Access Cutiscura</h1>
+      <p>Use the credentials stored in the database to continue.</p>
+    </div>
+
+    <% if (message) { %>
+      <div class="alert alert-error"><%= message %></div>
+    <% } %>
+
+    <form method="POST" action="/login" class="auth-form">
+      <label>
+        Email
+        <input type="email" name="email" placeholder="you@example.com" required />
+      </label>
+      <label>
+        Password
+        <input type="password" name="password" placeholder="Enter password" required />
+      </label>
+      <button type="submit" class="btn btn-primary btn-full">Sign in</button>
+    </form>
+
+    <form method="POST" action="/logout" class="auth-logout">
+      <% if (currentUser) { %>
+        <p>Logged in as <strong><%= currentUser.name %></strong></p>
+        <button type="submit" class="btn btn-ghost">Sign out</button>
+      <% } %>
+    </form>
+  </div>
+</section>
+

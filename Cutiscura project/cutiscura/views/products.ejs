@@ -1,0 +1,50 @@
+<section class="page-header">
+  <div>
+    <p class="eyebrow">Lab-grade catalog</p>
+    <h1>Potent formulas for every journey</h1>
+    <p>Filter by concern, routine step, and recommended skin type.</p>
+  </div>
+  <div class="tag-row">
+    <span class="chip">Cleanser</span>
+    <span class="chip">Serum</span>
+    <span class="chip chip--outline">Moisturiser</span>
+    <span class="chip chip--outline">SPF</span>
+  </div>
+</section>
+
+<% if (typeof error !== 'undefined' && error) { %>
+  <div class="alert alert-error"><%= error %></div>
+<% } %>
+
+<div class="table-wrapper table-gradient">
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Brand</th>
+        <th>Category</th>
+        <th>Skin Type</th>
+        <th>Concern</th>
+        <th>Price (₹)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if (products.length === 0) { %>
+        <tr>
+          <td colspan="6">No products available.</td>
+        </tr>
+      <% } %>
+      <% products.forEach((product) => { %>
+        <tr>
+          <td><%= product.name %></td>
+          <td><%= product.brand || '—' %></td>
+          <td><%= product.category_name || '—' %></td>
+          <td><%= product.type_name || '—' %></td>
+          <td><%= product.concern_name || '—' %></td>
+          <td><%= Number(product.price).toFixed(2) %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+
